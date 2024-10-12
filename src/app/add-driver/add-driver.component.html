@@ -1,0 +1,61 @@
+<div class="form-container">
+  <h1>Add a New Driver</h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="driver_name">Name:</label>
+      <input
+        type="text"
+        id="driver_name"
+        name="driver_name"
+        [(ngModel)]="driver.driver_name"
+        minlength="3"
+        maxlength="20"
+        placeholder="Enter driver name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="driver_department">Department:</label>
+      <select
+        id="driver_department"
+        name="driver_department"
+        [(ngModel)]="driver.driver_department"
+      >
+        <option value="food">Food</option>
+        <option value="furniture">Furniture</option>
+        <option value="electronics">Electronics</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="driver_licence">Licence:</label>
+      <input
+        type="text"
+        id="driver_licence"
+        name="driver_licence"
+        [(ngModel)]="driver.driver_licence"
+        minlength="5"
+        maxlength="5"
+        placeholder="Enter licence"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="driver_isActive">Is Active:</label>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="driver_isActive"
+          name="driver_isActive"
+          [(ngModel)]="driver.driver_isActive"
+        />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <button type="submit">Add Driver</button>
+  </form>
+</div>

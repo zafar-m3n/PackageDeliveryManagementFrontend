@@ -1,0 +1,74 @@
+<div class="form-container">
+  <h1>Update Driver</h1>
+
+  <form (ngSubmit)="updateDriver()">
+    <!-- Driver Selection Dropdown -->
+    <div class="form-group">
+      <label for="driver_select">Select Driver:</label>
+      <select id="driver_select" (change)="onDriverSelect($event)">
+        <option value="">Select a driver</option>
+        <option *ngFor="let driver of drivers" [value]="driver._id">
+          {{ driver.driver_name }} ({{ driver.driver_id }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Only show the form if a driver is selected -->
+    <ng-container *ngIf="selectedDriver">
+      <!-- Driver Name (read-only) -->
+      <div class="form-group">
+        <label for="driver_name">Name:</label>
+        <input
+          type="text"
+          id="driver_name"
+          name="driver_name"
+          [value]="selectedDriver.driver_name"
+          readonly
+        />
+      </div>
+
+      <!-- Driver Department Dropdown -->
+      <div class="form-group">
+        <label for="driver_department">Department:</label>
+        <select
+          id="driver_department"
+          name="driver_department"
+          [(ngModel)]="selectedDriver.driver_department"
+        >
+          <option value="food">Food</option>
+          <option value="furniture">Furniture</option>
+          <option value="electronics">Electronics</option>
+        </select>
+      </div>
+
+      <!-- Driver Licence Input -->
+      <div class="form-group">
+        <label for="driver_licence">Licence:</label>
+        <input
+          type="text"
+          id="driver_licence"
+          name="driver_licence"
+          minlength="5"
+          maxlength="5"
+          [(ngModel)]="selectedDriver.driver_licence"
+        />
+      </div>
+
+      <!-- Is Active Toggle -->
+      <div class="form-group">
+        <label for="driver_isActive">Is Active:</label>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="driver_isActive"
+            name="driver_isActive"
+            [(ngModel)]="selectedDriver.driver_isActive"
+          />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <button type="submit">Update Driver</button>
+    </ng-container>
+  </form>
+</div>

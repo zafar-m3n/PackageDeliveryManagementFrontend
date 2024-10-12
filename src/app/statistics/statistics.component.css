@@ -1,0 +1,39 @@
+ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  margin: 20px;
+}
+
+li {
+  padding: 20px;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+}
+
+/* Background colors for the stats */
+li:nth-child(1) {
+  background-color: lightblue;
+}
+
+li:nth-child(2) {
+  background-color: lightyellow;
+  color: black;
+}
+
+li:nth-child(3) {
+  background-color: lightgreen;
+}
+
+li:nth-child(4) {
+  background-color: lightcoral;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}

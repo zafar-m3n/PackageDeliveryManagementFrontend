@@ -1,0 +1,95 @@
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="Project Logo" class="logo" />
+      <span>Package Delivery Management System</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Driver Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="driverDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Driver Management
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="driverDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/add-driver">Add Driver</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/list-drivers"
+                >List All Drivers</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/update-driver"
+                >Update Driver</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/delete-driver"
+                >Delete Driver</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Package Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="packageDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Package Management
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="packageDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/add-package">Add Package</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/list-packages"
+                >List All Packages</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/update-package"
+                >Update Package</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/delete-package"
+                >Delete Package</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Statistics -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/statistics">CRUD Stats</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
