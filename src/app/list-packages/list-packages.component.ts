@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PackageService, Package } from '../services/package.service'; // Adjust the path if necessary
+import { PackageService, Package } from '../services/package.service';
+import { WeightToGramsPipe } from '../weight-to-grams.pipe';
 
 @Component({
   selector: 'app-list-packages',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, WeightToGramsPipe],
   templateUrl: './list-packages.component.html',
   styleUrls: ['./list-packages.component.css'],
 })

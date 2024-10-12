@@ -21,7 +21,7 @@
         <td>{{ package.package_id }}</td>
         <td>{{ package.package_title }}</td>
         <td>{{ package.package_destination }}</td>
-        <td>{{ package.package_weight }}</td>
+        <td>{{ package.package_weight | weightToGrams }}</td>
         <td>{{ package.isAllocated ? "Yes" : "No" }}</td>
         <td>{{ package.driver_id }}</td>
       </tr>

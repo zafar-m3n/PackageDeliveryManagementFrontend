@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DriverService, Driver } from '../services/driver.service';
+import { CustomUppercasePipe } from '../upper-case-pipe.pipe';
 
 @Component({
   selector: 'app-list-drivers',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CustomUppercasePipe],
   templateUrl: './list-drivers.component.html',
   styleUrls: ['./list-drivers.component.css'],
 })
