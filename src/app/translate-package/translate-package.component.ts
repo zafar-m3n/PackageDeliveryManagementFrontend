@@ -1,12 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PackageService, Package } from '../services/package.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-translate-package',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './translate-package.component.html',
-  styleUrl: './translate-package.component.css'
+  styleUrls: ['./translate-package.component.css'],
 })
-export class TranslatePackageComponent {
+export class TranslatePackageComponent implements OnInit {
+  packages: Package[] = [];
 
+  constructor(private packageService: PackageService) {}
+
+  ngOnInit(): void {
+    this.loadPackages();
+  }
+
+  loadPackages(): void {
+    this.packageService.getPackages().subscribe((data) => {
+      this.packages = data;
+    });
+  }
 }

@@ -51,7 +51,6 @@ export class AddPackageComponent {
   }
 
   onSubmit() {
-    // Ensure the driver_id is assigned from the selected driver
     this.package.driver_id = this.selectedDriverId;
 
     this.packageService.addPackage(this.package).subscribe({

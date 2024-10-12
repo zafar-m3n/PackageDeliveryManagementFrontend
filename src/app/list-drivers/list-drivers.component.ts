@@ -21,6 +21,9 @@ export class ListDriversComponent implements OnInit {
   selectedDriverId: string | null = null;
   selectedDriverName: string | null = null;
 
+  driversLoaded: boolean = false;
+  packagesLoaded: boolean = false;
+
   constructor(
     private driverService: DriverService,
     private packageService: PackageService
@@ -31,41 +34,44 @@ export class ListDriversComponent implements OnInit {
   }
 
   fetchData() {
-    // Fetch drivers and packages simultaneously
     this.driverService.getDrivers().subscribe({
       next: (data) => {
         this.drivers = data;
+        this.driversLoaded = true;
         this.checkIfDataIsLoaded();
       },
       error: (err) => {
         console.error('Error fetching drivers:', err);
         this.error = 'Failed to load drivers. Please try again later.';
-        this.loading = false;
+        this.driversLoaded = true;
+        this.checkIfDataIsLoaded();
       },
     });
 
     this.packageService.getPackages().subscribe({
       next: (data) => {
         this.packages = data;
+        this.packagesLoaded = true;
         this.checkIfDataIsLoaded();
       },
       error: (err) => {
         console.error('Error fetching packages:', err);
         this.error = 'Failed to load packages. Please try again later.';
-        this.loading = false;
+        this.packagesLoaded = true;
+        this.checkIfDataIsLoaded();
       },
     });
   }
 
   checkIfDataIsLoaded() {
-    if (this.drivers.length > 0 && this.packages.length > 0) {
+    if (this.driversLoaded && this.packagesLoaded) {
       this.loading = false;
     }
   }
 
   filterPackagesByDriver(driver_id: string, driver_name: string) {
     this.selectedDriverId = driver_id;
-    this.selectedDriverName = driver_name; // Capture the driver's name
+    this.selectedDriverName = driver_name;
     this.filteredPackages = this.packages.filter(
       (pkg) => pkg.driver_id === driver_id
     );
