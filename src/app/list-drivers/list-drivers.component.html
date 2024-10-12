@@ -1,6 +1,6 @@
 <h1>List of Drivers</h1>
 
-<div *ngIf="loading">Loading drivers...</div>
+<div *ngIf="loading">Loading drivers and packages...</div>
 
 <div *ngIf="error" class="error-message">{{ error }}</div>
 
@@ -14,6 +14,7 @@
         <th>Licence</th>
         <th>Is Active</th>
         <th>Created At</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -24,9 +25,50 @@
         <td>{{ driver.driver_licence }}</td>
         <td>{{ driver.driver_isActive ? "Yes" : "No" }}</td>
         <td>{{ driver.driver_createdAt | date : "yyyy-MM-dd HH:mm a" }}</td>
+        <td>
+          <!-- Button to filter packages for the current driver -->
+          <button
+            class="btn btn-primary"
+            (click)="filterPackagesByDriver(driver._id, driver.driver_name)"
+          >
+            View Packages
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Show the filtered packages in a table if a driver is selected -->
+<div *ngIf="selectedDriverId && filteredPackages.length > 0">
+  <h1>Packages for {{ selectedDriverName }}</h1>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Package ID</th>
+          <th>Title</th>
+          <th>Weight (g)</th>
+          <th>Destination</th>
+          <th>Is Allocated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let package of filteredPackages">
+          <td>{{ package.package_id }}</td>
+          <td>{{ package.package_title }}</td>
+          <td>{{ package.package_weight | number : "1.2-2" }} g</td>
+          <td>{{ package.package_destination }}</td>
+          <td>{{ package.isAllocated ? "Yes" : "No" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="selectedDriverId && filteredPackages.length === 0">
+  <p>No packages found for the selected driver.</p>
 </div>
 
 <p><a routerLink="/">Go back to Home</a></p>
