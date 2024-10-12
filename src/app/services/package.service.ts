@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-interface Package {
+export interface Package {
+  _id?: string;
   package_id?: string;
   package_title: string;
   package_weight: number;
