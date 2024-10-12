@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PackageService } from '../services/package.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Driver, DriverService } from '../services/driver.service';
+import { Router } from '@angular/router'; // Import the Router
 
 @Component({
   selector: 'app-add-package',
@@ -30,8 +31,10 @@ export class AddPackageComponent {
   constructor(
     private driverService: DriverService,
     private packageService: PackageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router // Inject Router here
   ) {}
+
   ngOnInit() {
     this.fetchDrivers();
   }
@@ -57,6 +60,8 @@ export class AddPackageComponent {
         this.message = 'Package added successfully!';
         this.isSuccess = true;
         this.resetForm();
+        // Redirect to list-packages after successful addition
+        this.router.navigate(['/list-packages']);
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error adding package', error);

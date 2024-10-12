@@ -1,22 +1,25 @@
 <div class="form-container">
   <h1>Delete Package</h1>
 
-  <!-- Static Form UI for deleting a package -->
-  <form>
-    <!-- Package ID Input -->
+  <form (ngSubmit)="deletePackage()">
+    <!-- Package Selection Dropdown -->
     <div class="form-group">
-      <label for="package_id">Package ID:</label>
-      <input
-        type="text"
-        id="package_id"
-        name="package_id"
-        minlength="10"
-        maxlength="10"
-        placeholder="Enter Package ID"
-      />
+      <label for="package_select">Select Package to Delete:</label>
+      <select
+        id="package_select"
+        [(ngModel)]="selectedPackageId"
+        name="selectedPackage"
+      >
+        <option value="">Select a package</option>
+        <option *ngFor="let package of packages" [value]="package.package_id">
+          {{ package.package_title }} ({{ package.package_id }})
+        </option>
+      </select>
     </div>
 
     <!-- Delete Button -->
-    <button type="button">Delete Package</button>
+    <button type="submit" [disabled]="!selectedPackageId">
+      Delete Package
+    </button>
   </form>
 </div>

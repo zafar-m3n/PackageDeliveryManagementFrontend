@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router'; // Import the Router
 import { DriverService, Driver } from '../services/driver.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class AddDriverComponent {
     driver_isActive: true,
   };
 
-  constructor(private driverService: DriverService) {}
+  constructor(private driverService: DriverService, private router: Router) {} // Inject Router
 
   onSubmit() {
     this.driverService.addDriver(this.driver).subscribe({
@@ -31,6 +32,7 @@ export class AddDriverComponent {
           driver_licence: '',
           driver_isActive: true,
         };
+        this.router.navigate(['/list-drivers']);
       },
       error: (error) => {
         console.error('Error adding driver', error);

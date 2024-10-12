@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router'; // Import Router
 import { DriverService, Driver } from '../services/driver.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class DeleteDriverComponent implements OnInit {
   drivers: Driver[] = [];
   selectedDriverId: string = '';
 
-  constructor(private driverService: DriverService) {}
+  constructor(private driverService: DriverService, private router: Router) {} // Inject Router
 
   ngOnInit() {
     this.fetchDrivers();
@@ -44,6 +45,8 @@ export class DeleteDriverComponent implements OnInit {
           (driver) => driver.driver_id !== this.selectedDriverId
         );
         this.selectedDriverId = '';
+        // Redirect to list-drivers after successful deletion
+        this.router.navigate(['/list-drivers']);
       },
       error: (error) => {
         console.error('Error deleting driver:', error);
