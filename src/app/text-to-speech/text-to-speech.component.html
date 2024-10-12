@@ -1,1 +1,30 @@
-<p>text-to-speech works!</p>
+<div class="container mt-4">
+  <h2>Drivers - Text to Speech</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Driver ID</th>
+        <th>Driver Name</th>
+        <th>Department</th>
+        <th>Licence</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let driver of drivers">
+        <td>{{ driver.driver_id }}</td>
+        <td>{{ driver.driver_name }}</td>
+        <td>{{ driver.driver_department }}</td>
+        <td>{{ driver.driver_licence }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="sendForTextToSpeech(driver.driver_licence)"
+          >
+            Text to Speech
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

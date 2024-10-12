@@ -1,1 +1,30 @@
-<p>generative-ai works!</p>
+<div class="container mt-4">
+  <h2>Packages - Calculate Distance</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Package ID</th>
+        <th>Title</th>
+        <th>Weight</th>
+        <th>Destination</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pkg of packages">
+        <td>{{ pkg.package_id }}</td>
+        <td>{{ pkg.package_title }}</td>
+        <td>{{ pkg.package_weight }} g</td>
+        <td>{{ pkg.package_destination }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="sendDestinationForDistance(pkg.package_destination)"
+          >
+            Calculate Distance
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
