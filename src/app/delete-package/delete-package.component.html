@@ -11,7 +11,7 @@
         name="selectedPackage"
       >
         <option value="">Select a package</option>
-        <option *ngFor="let package of packages" [value]="package.package_id">
+        <option *ngFor="let package of packages" [value]="package._id">
           {{ package.package_title }} ({{ package.package_id }})
         </option>
       </select>

@@ -43,7 +43,7 @@ export class DeletePackageComponent implements OnInit {
       next: (response) => {
         console.log('Package deleted successfully', response);
         this.packages = this.packages.filter(
-          (pkg) => pkg.package_id !== this.selectedPackageId
+          (pkg) => pkg._id !== this.selectedPackageId
         );
         this.selectedPackageId = ''; // Reset the selected package
       },
