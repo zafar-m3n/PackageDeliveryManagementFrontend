@@ -1,36 +1,29 @@
 <h1>List of Packages</h1>
 
-<div class="table-container">
+<div *ngIf="loading">Loading packages...</div>
+
+<div *ngIf="error" class="error-message">{{ error }}</div>
+
+<div *ngIf="!loading && !error" class="table-container">
   <table>
     <thead>
       <tr>
         <th>ID</th>
         <th>Title</th>
-        <th>Weight</th>
         <th>Destination</th>
-        <th>Created At</th>
-        <th>Is Allocated</th>
+        <th>Weight (kg)</th>
+        <th>Allocated</th>
         <th>Driver ID</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>123456</td>
-        <td>Package A</td>
-        <td>10 kg</td>
-        <td>New York</td>
-        <td>2024-10-11 10:45 AM</td>
-        <td>Yes</td>
-        <td>ABC123</td>
-      </tr>
-      <tr>
-        <td>654321</td>
-        <td>Package B</td>
-        <td>15 kg</td>
-        <td>San Francisco</td>
-        <td>2024-10-10 2:30 PM</td>
-        <td>No</td>
-        <td>XYZ987</td>
+      <tr *ngFor="let package of packages">
+        <td>{{ package.package_id }}</td>
+        <td>{{ package.package_title }}</td>
+        <td>{{ package.package_destination }}</td>
+        <td>{{ package.package_weight }}</td>
+        <td>{{ package.isAllocated ? "Yes" : "No" }}</td>
+        <td>{{ package.driver_id }}</td>
       </tr>
     </tbody>
   </table>
