@@ -8,6 +8,8 @@
         <th>Weight</th>
         <th>Destination</th>
         <th>Action</th>
+        <th>Distance to Melbourne</th>
+        <!-- New column for distance -->
       </tr>
     </thead>
     <tbody>
@@ -19,11 +21,13 @@
         <td>
           <button
             class="btn btn-primary"
-            (click)="sendDestinationForDistance(pkg.package_destination)"
+            (click)="sendDestinationForDistance(pkg)"
           >
             Calculate Distance
           </button>
         </td>
+        <td>{{ pkg.distanceToMelbourne || "N/A" }}</td>
+        <!-- Display distance here -->
       </tr>
     </tbody>
   </table>

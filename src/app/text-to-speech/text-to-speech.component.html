@@ -27,4 +27,9 @@
       </tr>
     </tbody>
   </table>
+
+  <div *ngIf="audioFileUrl" class="mt-4">
+    <h3>Generated Audio</h3>
+    <audio [src]="audioFileUrl" controls></audio>
+  </div>
 </div>

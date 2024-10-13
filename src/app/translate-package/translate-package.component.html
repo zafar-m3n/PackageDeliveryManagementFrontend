@@ -1,5 +1,7 @@
 <div class="container mt-4">
   <h2>Translate Package Descriptions</h2>
+
+  <!-- Existing Package Table -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -8,6 +10,7 @@
         <th>Weight</th>
         <th>Destination</th>
         <th>Description</th>
+        <th>Language</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -19,9 +22,40 @@
         <td>{{ pkg.package_destination }}</td>
         <td>{{ pkg.description }}</td>
         <td>
-          <button class="btn btn-primary">Translate</button>
+          <!-- Language selection dropdown -->
+          <select [(ngModel)]="pkg.selectedLanguage" class="form-select">
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="translateDescription(pkg)">
+            Translate
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- New Translations Table -->
+  <div *ngIf="translatedPackages.length > 0" class="mt-4">
+    <h3>Translated Descriptions</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Original Description</th>
+          <th>Translated Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let translated of translatedPackages">
+          <td>{{ translated.language }}</td>
+          <td>{{ translated.originalDescription }}</td>
+          <td>{{ translated.translatedDescription }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

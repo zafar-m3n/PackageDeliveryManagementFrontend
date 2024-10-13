@@ -3,6 +3,10 @@ import { io } from 'socket.io-client';
 import { PackageService, Package } from '../services/package.service';
 import { CommonModule } from '@angular/common';
 
+interface PackageWithDistance extends Package {
+  distanceToMelbourne?: string; // Add optional property for distance
+}
+
 @Component({
   selector: 'app-generative-ai',
   standalone: true,
@@ -11,7 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./generative-ai.component.css'],
 })
 export class GenerativeAiComponent implements OnInit {
-  packages: Package[] = [];
+  packages: PackageWithDistance[] = [];
   socket: any;
 
   constructor(private packageService: PackageService) {}
@@ -20,9 +24,13 @@ export class GenerativeAiComponent implements OnInit {
     this.loadPackages();
     this.connectToSocket();
   }
+
   loadPackages(): void {
     this.packageService.getPackages().subscribe((data) => {
-      this.packages = data;
+      this.packages = data.map((pkg) => ({
+        ...pkg,
+        distanceToMelbourne: 'N/A',
+      })); // Initialize distance
     });
   }
 
@@ -31,10 +39,13 @@ export class GenerativeAiComponent implements OnInit {
     console.log('Connected to socket');
   }
 
-  sendDestinationForDistance(destination: string): void {
-    this.socket.emit('calculateDistance', { destination });
-    this.socket.on('distanceResult', (distance: number) => {
-      alert(`Distance to Melbourne: ${distance} km`);
+  sendDestinationForDistance(pkg: PackageWithDistance): void {
+    this.socket.emit('calculateDistance', {
+      destination: pkg.package_destination,
+    });
+
+    this.socket.on('distanceCalculated', (distance: string) => {
+      pkg.distanceToMelbourne = distance;
     });
   }
 }
